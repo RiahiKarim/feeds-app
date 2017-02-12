@@ -1,0 +1,123 @@
+iframe{
+    width: 100%;
+    height: 100%;
+    margin: 5px 0px 0px;
+}
+
+md-list {
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    padding: 0px;
+}
+
+md-list-item.md-no-proxy{
+    padding: 0px;
+}
+
+md-card {
+    margin: 0px;
+    border: 1px solid #e1e8ed;
+    box-shadow: none;
+}
+
+md-checkbox{
+    margin: 0px;
+}
+
+md-checkbox.md-checked .md-icon {
+    background-color: rgb(255,82,82);
+}
+
+md-input-container {
+    margin: 0px;
+}
+md-card:hover {
+    background-color: #f5f8fa;
+}
+
+.feeds-header{
+        background-color:#f5f8fa;
+}
+
+.md-title {
+    font-size: 14px;
+}
+.md-title > a:hover {
+    color: #D60808;
+    text-decoration: underline;
+}
+md-card md-card-title md-card-title-media{
+    margin: 0px;
+}
+md-card-title-text {
+    padding-left: 10px;
+}
+
+.video-name{
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+.video-name:hover{
+    color: #444;
+    text-decoration: underline;
+}
+.video-description {
+    white-space: pre-line;
+    text-align: justify;
+    cursor: text;
+    padding: 0px 10px;
+    border-left: 2px solid #eee;
+    border-right: 2px solid #eee;
+    border-bottom: 2px solid #eee;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.scale:hover{
+    transform: scale(1.25);
+}
+
+.video-data{
+    color: #757575;
+    font-weight: bold;
+    padding: 5px;
+    font-size: 12px;
+}
+.video-data .md-icon-button{
+    height: auto;
+    width: auto;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0%;
+}
+.video-data md-icon{
+    height: 20px;
+    width: 20px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+.like{
+    color: rgb(255,82,82);
+}
+
+.plays{
+    color: #00adef;
+}
+.search{
+    color: grey;
+}
+.search-results{
+    position: absolute;
+    left: auto;
+    right: 2px;
+    bottom: 7px;
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    color: grey;
+}
+.searchBar{
+    margin: 0px 20px 0px;
+}
