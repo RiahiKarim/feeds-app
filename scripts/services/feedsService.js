@@ -14,12 +14,11 @@
         return service;
 
         ////////////////
-        function getFeeds(numberOfFeeds) { 
-            return $http({method: 'GET', url: feedsAppConfig.dataLocation }).then(
-                function(responseData){
-                     return Feed.apiResponseTransformer(responseData,numberOfFeeds);
-                }
-            );
+        function getFeeds() { 
+            return $http({method: 'GET', url: feedsAppConfig.dataLocation })
+            //Passed the apiResponseTransformer as a callback function to then().
+            //The goal is to have all of the feeds returned by the API to be mapped to our Feed model. 
+                    .then(Feed.apiResponseTransformer);
         }
     }
 })();

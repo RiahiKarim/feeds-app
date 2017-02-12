@@ -6,11 +6,10 @@
         .factory('Feed', Feed);
 
     Feed.inject = ['Author','Video'];
+    //Feed model definition
     function Feed(Author,Video) {
 
-        /**
-         * Constructor
-         */
+        //Constructor
         function Feed(author, video) {
             this.author = author;
             this.video = video;
@@ -23,12 +22,14 @@
             );
         };
 
-        Feed.apiResponseTransformer = function (responseData, numberFeeds) {
+        //This static function is a response transformers to handle complex response data from the API 
+        //It allows to verify the response data and enhance it with additional properties
+        Feed.apiResponseTransformer = function (responseData) {
             return responseData.data.data
-                    .slice(0,numberFeeds)
                     .map(Feed.build);
         };
-
+        
+        //Return the constructor function
         return Feed;
     }
 })();

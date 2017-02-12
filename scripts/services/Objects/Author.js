@@ -5,6 +5,7 @@
         .module('feedsApp')
         .factory('Author', Author);
 
+    //Author model definition
     function Author(feedsAppConfig) {
 
         //Constructor
@@ -16,6 +17,8 @@
             else
                 this.image = {link : feedsAppConfig.defaultUserPicturelocation};
         }
+        
+        //Return the constructor function
         return Author;
     }
 })();

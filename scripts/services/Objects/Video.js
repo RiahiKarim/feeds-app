@@ -4,7 +4,7 @@
     angular
         .module('feedsApp')
         .factory('Video', Video);
-
+    //Video model definition
     function Video() {
         
         function Video(data){
@@ -17,6 +17,7 @@
             this.numberLikes = data.metadata.connections.likes.total;
         }
 
+         //Return the constructor function
         return Video;
     }
 })();
