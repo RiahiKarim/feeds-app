@@ -45,7 +45,7 @@
                                 <md-input-container md-no-float class="md-block searchBar">
                                     <md-icon class="search" md-svg-src="images/icons/search.svg"></md-icon>
                                     <input ng-model="vm.search" type="text" placeholder="Search">
-                                    <div class="search-results">Videos displayed {{filtredFeeds.length}}/{{vm.displayedFeeds}}</div>
+                                    <div class="search-results">Videos displayed {{ (filtredFeeds.length > vm.numberOfFeedsToDisplay) ? vm.numberOfFeedsToDisplay : filtredFeeds.length}}/{{filtredFeeds.length}}</div>
                                 </md-input-container>
                             </div>
                             <div flex="35" layout="row" layout-align="space-between center">
@@ -57,23 +57,20 @@
                                     <md-tooltip>More than {{vm.config.popularVideos | shortNumber}} likes</md-tooltip>
                                 </div>
                                 <div>
-                                    <md-button aria-label="Show 10 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 10}"
-                                        ng-click="vm.loadFeeds(10)">
-                                        <md-tooltip>Display 10 Feeds</md-tooltip>10
-                                    </md-button>
-                                    <md-button aria-label="Display 25 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 25}"
-                                            ng-click="vm.loadFeeds(25)">
-                                        <md-tooltip>Display 25 Feeds</md-tooltip>25
-                                    </md-button>
-                                    <md-button aria-label="Display 50 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 50}"
-                                                ng-click="vm.loadFeeds(50)">
-                                        <md-tooltip>Display 50 Feeds</md-tooltip>50
+                                    <md-button  ng-repeat="numberOfFeedsToDisplay in vm.defaultViews track by $index"
+                                                aria-label="Show {{numberOfFeedsToDisplay}} Feeds"  
+                                                class="md-raised md-mini md-icon-button" 
+                                                ng-class="{'md-primary' : vm.numberOfFeedsToDisplay  == numberOfFeedsToDisplay}"
+                                                ng-click="vm.displayFeeds(numberOfFeedsToDisplay)">
+                                        <md-tooltip>Display {{numberOfFeedsToDisplay}} Feeds</md-tooltip>{{numberOfFeedsToDisplay}}
                                     </md-button>
                                 </div>
                             </div>
                         </div>
                         <!-- Form to filter feeds-->
-                        <md-list-item class="md-clickable" ng-repeat="feed in vm.feeds | filter:{video : {description : vm.search}} | filter:vm.popularFeeds() as filtredFeeds track by $index">
+                        <md-list-item   class="md-clickable" 
+                                        ng-repeat="feed in vm.feeds | filter:{video : {description : vm.search}} | filter:vm.popularFeeds() as filtredFeeds  track by $index"
+                                        ng-if="$index < vm.numberOfFeedsToDisplay">
                             <md-card flex>
                                 <md-card-title>
                                     <md-card-title-media>
@@ -117,8 +114,8 @@
                                 </md-card-title>
                             </md-card>
                         </md-list-item>
-                        <div class="inset feeds-header" layout="row" layout-align="center center">
-                            <md-button>
+                        <div ng-if="vm.numberOfFeedsToDisplay < filtredFeeds.length" class="inset feeds-header" layout="row" layout-align="center center">
+                            <md-button ng-click="vm.showMoreFeeds()" aria-label="show more">
                                 Show More
                             </md-button>
                         </div>
