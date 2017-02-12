@@ -18,7 +18,9 @@ md-card {
     border: 1px solid #e1e8ed;
     box-shadow: none;
 }
-
+md-card-title-media{
+    width: 65px;
+}
 md-checkbox{
     margin: 0px;
 }
@@ -81,9 +83,13 @@ md-card-title-text {
 .video-data{
     color: #757575;
     font-weight: bold;
-    padding: 5px;
     font-size: 12px;
+    text-align: end;
 }
+.video-data span{
+    padding: 5px;
+}
+
 .video-data .md-icon-button{
     height: auto;
     width: auto;

@@ -78,30 +78,30 @@
                                 <md-card-title>
                                     <md-card-title-media>
                                         <a href="{{feed.author.link}}" class="md-media-sm card-media">
-                                            <img ng-src="{{feed.author.image.link}}" alt="{{feed.author.name}}" class="img-thumbnail" width="65" height="65">
+                                            <img ng-src="{{feed.author.image.link}}" alt="{{feed.author.name}}" class="img-thumbnail">
                                         </a>
                                     </md-card-title-media>
                                     <md-card-title-text>
                                         <span class="md-title"><a href="{{feed.author.link}}">{{feed.author.name}}</a> uploaded.</span>
                                         <div ng-if="vm.config.displayIframeVideos" ng-bind-html="feed.video.embedVideo | trustHTML"></div>
                                         <div layout="row" layout-align="space-between center">
-                                            <a flex="75" href="{{feed.video.link}}" class="video-name">{{feed.video.name}}</a>
-                                            <div>
-                                                <span class="video-data">
+                                            <a flex="70" href="{{feed.video.link}}" class="video-name">{{feed.video.name}}</a>
+                                            <div class="video-data" flex="30">
+                                                <span>
                                                     <md-button aria-label="plays" class="md-icon-button">
                                                         <md-icon class="plays" md-svg-icon="images/icons/plays.svg" alt="plays"></md-icon>
                                                     </md-button>
                                                     {{feed.video.numberPlays | shortNumber}}
                                                     <md-tooltip>{{feed.video.numberPlays}} Plays</md-tooltip>
                                                 </span>
-                                                <span class="video-data">
+                                                <span>
                                                     <md-button aria-label="likes" class="md-icon-button">
                                                         <md-icon class="like" md-svg-icon="images/icons/likes.svg" alt="likes"></md-icon>
                                                     </md-button>
                                                     {{feed.video.numberLikes | shortNumber}}
                                                     <md-tooltip>{{feed.video.numberLikes}} Likes</md-tooltip>
                                                 </span>
-                                                <span class="video-data">
+                                                <span>
                                                     <md-button aria-label="comments" class="md-icon-button">
                                                         <md-icon  md-svg-icon="images/icons/comments.svg" alt="comments"></md-icon>
                                                     </md-button>
