@@ -4,9 +4,7 @@
 <head>
     <title>Feeds App</title>
     <meta charset="UTF-8">
-    <!-- AngularJS Material CSS using GitCDN to load directly from `bower-material/master` -->
-    <link  href="images/icons/favicon.ico" rel="icon">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="images/icons/favicon.ico" rel="icon">
     <link href="libs/bootstrap.min.css" rel="stylesheet">
     <link href="libs/angular-material.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
@@ -14,7 +12,8 @@
 
 <body>
     <div ng-app="feedsApp">
-        <div  layout="column" ng-controller="feedsCtrl as vm">
+        <div layout="column" ng-controller="feedsCtrl as vm">
+            <!--Header-->
             <md-toolbar layout="row" layout-align="space-between center" class="md-toolbar-tools">
                 <h1>Feeds App - Karim Riahi</h1>
                 <div>
@@ -31,63 +30,49 @@
                         <md-icon class="scale" md-svg-icon="images/icons/mail.svg" alt="mail"></md-icon>
                     </md-button>
                 </div>
-                
             </md-toolbar>
-            <!--<md-toolbar class="md-hue-1" ng-show="showSearch">
-                <div class="md-toolbar-tools">
-                    <md-button ng-click="showSearch = !showSearch" aria-label="Back">
-                        <ng-md-icon icon="arrow_back"></ng-md-icon>
-                    </md-button>
-                    <h3 flex="10">
-                        Back
-                    </h3>
-                    <md-input-container md-theme="input" flex>
-                        <label>&nbsp;</label>
-                        <input ng-model="search.who" placeholder="enter search">
-                    </md-input-container>
-                    <md-button aria-label="Search" ng-click="showSearch = !showSearch">
-                        <ng-md-icon icon="search"></ng-md-icon>
-                    </md-button>
-                    <md-button aria-label="Open Settings" ng-click="showListBottomSheet($event)">
-                        <ng-md-icon icon="more_vert"></ng-md-icon>
-                    </md-button>
-                </div>
-
-            </md-toolbar>-->
+            <!--End Header-->
+            <!-- Feeds Section-->
             <div>
                 <div class="inset" hide-sm></div>
                 <div class="inset"></div>
                 <div layout="row" layout-align="center center">
                     <md-list flex-gt-sm="90" flex-gt-md="60">
-                        <div  class="inset feeds-header" layout="row" layout-align="space-between center">
+                        <!-- Form to filter feeds-->
+                        <div class="inset feeds-header" layout="row" layout-align="space-between center">
+                            <!--Search field-->
                             <div flex="65">
-                                <md-input-container md-no-float class="md-block searchBar"> 
+                                <md-input-container md-no-float class="md-block searchBar">
                                     <md-icon class="search" md-svg-src="images/icons/search.svg"></md-icon>
                                     <input ng-model="vm.search" type="text" placeholder="Search">
-                                    <div class="search-results">Videos displayed  {{filtredFeeds.length}}/{{vm.displayedFeeds}}</div>
-                               </md-input-container>
+                                    <div class="search-results">Videos displayed {{filtredFeeds.length}}/{{vm.displayedFeeds}}</div>
+                                </md-input-container>
                             </div>
                             <div flex="35" layout="row" layout-align="space-between center">
+                                <!-- popular video checkbox-->
                                 <div>
                                     <md-checkbox ng-model="vm.showPopular" aria-label="Popular videos">
                                         Most liked
                                     </md-checkbox>
-                                    <md-tooltip>More than 10 likes</md-tooltip>
+                                    <md-tooltip>More than {{vm.config.popularVideos | shortNumber}} likes</md-tooltip>
                                 </div>
                                 <div>
-                                    <md-button aria-label="Show 10 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 10}" ng-click="vm.loadFeeds(10)">
-                                    <md-tooltip>Display 10 Feeds</md-tooltip>10
+                                    <md-button aria-label="Show 10 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 10}"
+                                        ng-click="vm.loadFeeds(10)">
+                                        <md-tooltip>Display 10 Feeds</md-tooltip>10
                                     </md-button>
-                                    <md-button  aria-label = "Display 25 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 25}" ng-click="vm.loadFeeds(25)">
+                                    <md-button aria-label="Display 25 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 25}"
+                                            ng-click="vm.loadFeeds(25)">
                                         <md-tooltip>Display 25 Feeds</md-tooltip>25
                                     </md-button>
-                                    <md-button aria-label="Display 50 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 50}" ng-click="vm.loadFeeds(50)">
+                                    <md-button aria-label="Display 50 Feeds" class="md-raised md-mini md-icon-button" ng-class="{'md-primary' : vm.displayedFeeds === 50}"
+                                                ng-click="vm.loadFeeds(50)">
                                         <md-tooltip>Display 50 Feeds</md-tooltip>50
                                     </md-button>
                                 </div>
                             </div>
                         </div>
-                        
+                        <!-- Form to filter feeds-->
                         <md-list-item class="md-clickable" ng-repeat="feed in vm.feeds | filter:{video : {description : vm.search}} | filter:vm.popularFeeds() as filtredFeeds track by $index">
                             <md-card flex>
                                 <md-card-title>
@@ -102,13 +87,13 @@
                                         <div layout="row" layout-align="space-between center">
                                             <a flex="75" href="{{feed.video.link}}" class="video-name">{{feed.video.name}}</a>
                                             <div>
-                                               <span class="video-data">
+                                                <span class="video-data">
                                                     <md-button aria-label="plays" class="md-icon-button">
                                                         <md-icon class="plays" md-svg-icon="images/icons/plays.svg" alt="plays"></md-icon>
                                                     </md-button>
                                                     {{feed.video.numberPlays | shortNumber}}
                                                     <md-tooltip>{{feed.video.numberPlays}} Plays</md-tooltip>
-                                                </span>            
+                                                </span>
                                                 <span class="video-data">
                                                     <md-button aria-label="likes" class="md-icon-button">
                                                         <md-icon class="like" md-svg-icon="images/icons/likes.svg" alt="likes"></md-icon>
@@ -137,25 +122,27 @@
                 <div class="inset" hide-sm></div>
                 <div class="inset"></div>
             </div>
+            <!-- End Feeds Section-->
         </div>
-        
-        <!-- Vendor libraries -->
-        <script src="libs/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
-        <script src="libs/angular-sanitize.min.js"></script>
-        <!-- AngularJS Material-->
-        <script src="libs/angular-material.min.js"></script>
-        <script src="libs/lodash.min.js"></script>
-        <!-- Application Files -->
-        <script src="scripts/feedsApp.js"></script>
-        <script src="scripts/providers/config.js"></script>
-        <script src="scripts/controllers/feedsController.js"></script>
-        <script src="scripts/services/feedsService.js"></script>
-        <script src="scripts/services/Objects/Author.js"></script>
-        <script src="scripts/services/Objects/Video.js"></script>
-        <script src="scripts/services/Objects/Feed.js"></script>
-        <script src="scripts/filters/filters.js"></script>
+    </div>
+
+    <!-- Vendor libraries -->
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-animate.min.js"></script>
+    <script src="libs/angular-aria.min.js"></script>
+    <script src="libs/angular-sanitize.min.js"></script>
+    <!-- AngularJS Material-->
+    <script src="libs/angular-material.min.js"></script>
+    <script src="libs/lodash.min.js"></script>
+    <!-- Application Files -->
+    <script src="scripts/feedsApp.js"></script>
+    <script src="scripts/providers/config.js"></script>
+    <script src="scripts/controllers/feedsController.js"></script>
+    <script src="scripts/services/feedsService.js"></script>
+    <script src="scripts/services/Objects/Author.js"></script>
+    <script src="scripts/services/Objects/Video.js"></script>
+    <script src="scripts/services/Objects/Feed.js"></script>
+    <script src="scripts/filters/filters.js"></script>
 </body>
 
 </html>
