@@ -2,7 +2,7 @@
 
 A simple web app to display the results of a feed into a page, and provide a basic form to filter those results developed in [AngularJS](https://angularjs.org/) with [Material-Design](https://material.angularjs.org/).
 
-#### [Try the DEMO](https://feeds-app.mybluemix.net/)
+#### [Try the DEMO](https://riahikarim.github.io/feeds-app/)
 ### Features
   - Select between 10, 25, or 50 maximum results to display.
   - Display most liked videos -- videos that have more than a number of likes.
